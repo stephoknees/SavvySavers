@@ -23,24 +23,10 @@ function DOMtoString(document_root) {
         }
         node = node.nextSibling;
     }
-    console.log(html);
     return html;
-}
-
-function parseTotal(document_root) {
-    let text = DOMtoString(document_root).toLowerCase();
-    let prepos = text.lastIndexOf("tax");
-    prepos = text.indexOf("total", prepos);
-    let pos = text.indexOf("$", prepos);
-    pos += 1;
-    let amount = '';
-    while(text.charAt(pos) != '<') {
-        amount += text.charAt(pos++);
-    }
-    return amount;
 }
 
 chrome.runtime.sendMessage({
     action: "getSource",
-    source: parseTotal(document)
+    source: DOMtoString(document)
 });
