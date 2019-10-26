@@ -1,6 +1,6 @@
 
 function DOMtoString(document_root) {
-    var html = '',
+    let html = '',
         node = document_root.firstChild;
     while (node) {
         switch (node.nodeType) {
@@ -27,7 +27,20 @@ function DOMtoString(document_root) {
     return html;
 }
 
+function parseTotal(document_root) {
+    let text = DOMtoString(document_root).toLowerCase();
+    let prepos = text.lastIndexOf("tax");
+    prepos = text.indexOf("total", prepos);
+    let pos = text.indexOf("$", prepos);
+    pos += 1;
+    let amount = '';
+    while(text.charAt(pos) != '<') {
+        amount += text.charAt(pos++);
+    }
+    return amount;
+}
+
 chrome.runtime.sendMessage({
     action: "getSource",
-    source: DOMtoString(document)
+    source: parseTotal(document)
 });
