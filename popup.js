@@ -34,10 +34,14 @@ let scrapePage =
           item[domain] = amount;
           items.push(item);
           chrome.storage.local.set({items: items});
-          //alert(items);
-          chrome.storage.local.clear();
+          alert(items);
+          // chrome.storage.local.clear();
       });
     });
   });
   
 window.onload = scrapePage;
+let purchase = document.getElementsByClassName("purchase_button");
+// purchase[0].onclick = scrapePage;
+purchase[0].addEventListener("click", scrapePage);
+console.log(purchase);

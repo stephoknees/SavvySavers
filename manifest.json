@@ -4,8 +4,10 @@
     "manifest_version": 2,
     "description": "Keep track of your online spending for the month!",
     "browser_action": {
-      "default_popup": "popup.html"
+      "default_popup": "popup.html",
+      "default_title": "SavvySavers",
+      "default_icon": "SS.png"
     },
-    "permissions": ["tabs", "<all_urls>", "storage"]
+    	"permissions": ["tabs", "<all_urls>", "storage"]
   }
    
