@@ -1,3 +1,6 @@
+var total = 0.00;
+var totalElement = document.getElementById("total");
+
 chrome.runtime.onMessage.addListener(function(request, sender) {
   if (request.action == "getSource") {
     message.innerText = request.source;
@@ -13,11 +16,10 @@ function displayPurchase(one = false) {
 
     var purchaseContainer = document.getElementById("purchaseContainer");
     
-    console.log(items);
     var i;
     for ((one) ?  i = items.length - 1 : i = 0;i < items.length; i++) {
       for (kv in items[i]) {
-        console.log("index check: " + i);
+        total += parseFloat(items[i][kv]);
         
         var buttonContainer = document.createElement("div");
         
@@ -25,7 +27,7 @@ function displayPurchase(one = false) {
         purchaseEntry.innerHTML = `${kv}: ${items[i][kv]}`;
         
         var purchaseDelete = document.createElement("button");
-        purchaseDelete.innerHTML = "x";
+        purchaseDelete.innerHTML = "X";
 
         buttonContainer.classList.add("buttonContainer");
         buttonContainer.id = i;
@@ -42,6 +44,8 @@ function displayPurchase(one = false) {
         purchaseContainer.appendChild(buttonContainer);
       }
     }
+
+    totalElement.innerHTML = `Total: $${total.toFixed(2)}`;
 })};
 
   
@@ -73,7 +77,7 @@ function scrapePage() {
         let prepos = text.lastIndexOf("tax");
         if(prepos < 0) return;
         
-        prepos = text.lastIndexOf("total", prepos);
+        prepos = text.indexOf("total", prepos);
         if(prepos < 0) return;
         
         let pos = text.indexOf("$", prepos);
@@ -99,11 +103,14 @@ function scrapePage() {
 }
 
 function deleteEntry(entry) {
-  chrome.storage.local.get({items:[]}, function(result) {
-    console.log(entry.parentNode.id);
-    
+  chrome.storage.local.get({items:[]}, function(result) {    
     items = result.items;
     let remove = entry.parentNode.id;
+    
+    for (kv in items[remove]) {
+      total -= parseFloat(items[remove][kv]);
+      totalElement.innerHTML = `Total: $${total.toFixed(2)}`;
+    }
 
     items.splice(remove, 1);
     chrome.storage.local.set({items: items});
