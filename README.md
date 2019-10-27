@@ -10,3 +10,13 @@
 * *popup.html* is the main page for the extension and holds all the elements
 * *popup.html* uses *popup.js* for button click actions and any other scripting uses
 * *getPagesSource.js* is injected into the active tab to return the html of the current page
+
+### Known Issues
+* The extension grabs the wrong dollar amount for some websites because of the variability of a checkout page's HTML
+
+### Future Iterations
+* Automatic tracking and addition of purchases without the button
+* Ability to edit values (to help mitigate the issue)
+* Add monthly limit option
+* Track month and purchase date
+* Recognize a checkout page and prompt with current month's spending
