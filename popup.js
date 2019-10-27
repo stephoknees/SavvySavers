@@ -11,6 +11,11 @@ function scrapePage() {
     console.log(items);
     chrome.tabs.getSelected(null, function(tab) {
       let domain = tab.url;
+      let begin = domain.indexOf("www.") + 4;
+      let begin2 = domain.indexOf("https://") + 8;
+      begin = (begin2 > begin) ? begin2 : begin;
+      let end = domain.indexOf(".com");
+      domain = domain.substring(begin,end);
       let message = document.querySelector('#message');
       chrome.tabs.executeScript(null, {
           file: "getPagesSource.js"
@@ -32,7 +37,7 @@ function scrapePage() {
               amount += text.charAt(pos++);
           }
           let item = {}
-          item[domain] = amount;
+          item[domain] = amount.trim();
           items.push(item);
           chrome.storage.local.set({items: items});
           //alert(items);
