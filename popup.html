@@ -1,17 +1,23 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-<link rel="stylesheet" type="text/css" href="popup.css">
-<meta content = "width=device-width, initial-scale=1">
-</head>
+    <head>
+        <link rel="stylesheet" type="text/css" href="popup.css">
+        <meta content = "width=device-width, initial-scale=1">
+    </head>
 
-<body>
-<button class = "purchase_button" style= "background: #4CAF50" title = "Add purchase to list"> Add Purchase
-</button>
-<div class = "container" style = "background: #4CAF50">
-  <button class = "remove_button" title = "Remove item from list"> X </button>
-</div>
-</body>
+    <body>
+        <button type = "button" class = "purchase_button" style= "background: #4CAF50">
+            Add Purchase
+        </button>
+        <div class = "container" style = "background: #4CAF50">
+            <button class = "remove_button" title = "Remove item from list">
+                X
+            </button>
+        </div>
+        <div id = 'message' style = "display:none">
+            <script type = 'text/javascript' src = 'popup.js'></script>
+        </div>
+    </body>
 
 </html>

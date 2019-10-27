@@ -4,21 +4,22 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
     }
   });
   
-let scrapePage = 
+function scrapePage() {
   chrome.storage.local.get({items:[]}, function(result) {
     // gets list of pairs
     let items = result.items;
+    console.log(items);
     chrome.tabs.getSelected(null, function(tab) {
       let domain = tab.url;
-      var message = document.querySelector('#message');
+      let message = document.querySelector('#message');
       chrome.tabs.executeScript(null, {
           file: "getPagesSource.js"
       }, function() {
-          // If you try and inject into an extensions page or the webstore/NTP you'll get an error
+          // If you try and inject into an extensions page or the webstore/NTP get an error
           if (chrome.runtime.lastError) {
             message.innerText = 'There was an error injecting script : \n' + chrome.runtime.lastError.message;
           }
-          let text = message.innerText;
+          let text = message.innerText.toLowerCase();
           let prepos = text.lastIndexOf("tax");
           if(prepos < 0) return;
           prepos = text.indexOf("total", prepos);
@@ -34,14 +35,13 @@ let scrapePage =
           item[domain] = amount;
           items.push(item);
           chrome.storage.local.set({items: items});
-          alert(items);
-          // chrome.storage.local.clear();
+          //alert(items);
+          console.log(items);
+          //chrome.storage.local.clear();
       });
     });
   });
-  
-window.onload = scrapePage;
+}
+// links button click
 let purchase = document.getElementsByClassName("purchase_button");
-// purchase[0].onclick = scrapePage;
-purchase[0].addEventListener("click", scrapePage);
-console.log(purchase);
+purchase[0].onclick = scrapePage;
