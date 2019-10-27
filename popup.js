@@ -48,7 +48,6 @@ function displayPurchase(one = false) {
     totalElement.innerHTML = `Total: $${total.toFixed(2)}`;
 })};
 
-  
 function scrapePage() {
   chrome.storage.local.get({items:[]}, function(result) {
     // gets list of pairs
