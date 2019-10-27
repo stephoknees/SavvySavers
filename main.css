@@ -1,0 +1,54 @@
+@import "normalize.css";
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: whitesmoke;
+    font-size: 18px;
+    width: 200px;
+}
+
+button {
+    display: block;
+    margin: auto;
+    margin-top: 10px;
+    background-color: darkgreen;
+    color: white;
+    padding: 8px;
+    border: 1px solid black;
+    border-radius: 20px;
+    transition: background-color 0.8s;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: green;
+}
+
+#purchaseContainer {
+    margin: auto;
+    margin-top: 15px;
+    padding: 0 10px;
+}
+
+.buttonContainer {
+    display: grid;
+    grid-template-columns: 20% auto;
+}
+
+.buttonContainer:nth-child(even) {
+    background-color: lightslategray;
+    color: white;
+}
+
+.delte, .entry {
+    margin: 0;
+    padding: 15px 8px;
+}
+
+.delete {
+    text-align: center;
+    padding: 15px 2px;
+}

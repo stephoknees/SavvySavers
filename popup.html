@@ -1,23 +1,19 @@
 <!DOCTYPE html>
 <html>
-
     <head>
-        <link rel="stylesheet" type="text/css" href="popup.css">
-        <meta content = "width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./main.css">
     </head>
 
-    <body>
-        <button type = "button" class = "purchase_button" style= "background: #4CAF50">
-            Add Purchase
-        </button>
-        <div class = "container" style = "background: #4CAF50">
-            <button class = "remove_button" title = "Remove item from list">
-                X
-            </button>
-        </div>
-        <div id = 'message' style = "display:none">
-            <script type = 'text/javascript' src = 'popup.js'></script>
-        </div>
-    </body>
+    <body>        
+        <button type="button" id="add">Add Purchase</button>
 
+        <!-- purchases -->
+        <div id="purchaseContainer"></div>
+
+
+        <div id='message' style="display: none;">injecting script</div>
+        
+        <!-- script -->
+        <script src='popup.js'></script>
+    </body>
 </html>
