@@ -24,7 +24,7 @@ button {
 
 button:hover {
     cursor: pointer;
-    background-color: green;
+    background-color: #52bc72;
 }
 
 #purchaseContainer {
@@ -49,6 +49,23 @@ button:hover {
 }
 
 .delete {
+    background-color: red;
+    margin: auto;
+    padding: 2px 6px;
+    font-size: 12px;
     text-align: center;
-    padding: 15px 2px;
+    border-radius: 50%;
+}
+
+.delete:hover {
+    background-color: darkred;
+}
+
+#total {
+    margin: 0;
+    margin-top: 10px;
+    padding: 15px;
+    background-color: green;
+    color: white;
+    text-align: center;
 }
